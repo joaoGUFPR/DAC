@@ -1,6 +1,9 @@
 <h1>Diagrama de casos de uso</h1>
 <div>
 <p>Diagrama de casos de uso de acordo com os requisitos especificados.</p>
+<p>Foi utilizado o 
+  <a href="https://www.plantuml.com/">PlantUml</a> para desenhar o diagrama.
+</p>
 <ul>
   <li>Administrador</li>
   <li>Cliente</li>
