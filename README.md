@@ -99,3 +99,84 @@
     <img width="1379" height="848" alt="image" src="https://github.com/user-attachments/assets/8daec9bd-1e26-4089-bcd8-8fb5ed59f1ef" />
   </p>  
 </div>
+
+<div>
+  <h1>Diagrama de Sequência -> Consulta de Extrato</h1>p
+  <p>Sequência:</p>
+  <ul>
+    <li>O Cliente solicita o extrato informando data início e fim.</li>
+    <li>O MS Conta (no modelo CQRS) consulta a base de leitura.</li>
+    <li>O sistema retorna as movimentações no período, coloridas:</li>
+    <li>Vermelho → saída (saque, transferência enviada).</li>
+    <li>Azul → entrada (depósito, transferência recebida).</li>
+    <li>Também retorna o saldo consolidado de cada dia (mesmo sem movimentações).</li>
+    <p>
+      <img width="1222" height="498" alt="image" src="https://github.com/user-attachments/assets/824df1e1-bde9-4a66-803d-f7c6193e308e" />
+    </p>
+  </ul>
+</div>
+<div>
+  <h1>Diagrama de Sequência -> Inserção de Gerente</h1>
+  <p>Sequência:</p>
+  <ul>
+    <li>Administrador insere novo Gerente.</li>
+    <li>Sistema escolhe o gerente com mais contas para transferir uma delas ao novo gerente (ou trata caso especial se for o primeiro).</li>
+    <li>Novo Gerente recebe a conta atribuída.</li>
+    <li>Registro criado no MS Gerente e também no MS Autenticação (com login/senha).</li>
+  </ul>
+  <p>
+    <img width="1312" height="614" alt="image" src="https://github.com/user-attachments/assets/b6fd959b-9836-45c4-8026-c221fcc8e51b" />
+  </p>
+</div>
+<div>
+  <h1>Diagrama de Sequência -> Remoção de Gerente</h1>
+  <p>Sequência:</p>
+  <ul>
+    <li>Administrador solicita remoção.</li>
+    <li>Sistema consulta gerente com menos contas para redistribuir as contas.</li>
+    <li>Contas são transferidas para esse gerente.</li>
+    <li>Gerente é removido do MS Gerente e MS Autenticação.</li>
+    <li>Não é permitido remover o último gerente do banco.</li>
+  </ul>
+  <p>
+    <img width="1574" height="748" alt="image" src="https://github.com/user-attachments/assets/e0d27e73-b06c-4976-bdc3-be460af7375a" />
+  </p>
+</div>
+
+<div>
+  <h1>Diagrama de Sequência -> Login/Logout </h1>
+  <p>Sequência:</p>
+  <ul>
+    <li>O Cliente/Gerente/Administrador faz login com e-mail/senha.</li>
+    <li>O MS Autenticação (MongoDB) valida usuário e senha.</li>
+    <li>Se válido → retorna token JWT, tipo do token, tipo do usuário e os dados do usuário.</li>
+    <li>Se inválido → retorna erro.</li>
+    <li>O Logout é simples: basta o cliente descartar o token (não há sessão no servidor).</li>
+  </ul>
+  <p>
+    Login:
+    <img width="1088" height="647" alt="image" src="https://github.com/user-attachments/assets/48702650-18e5-4e3b-bff6-5493c7f5141b" />
+  </p>
+  <p>
+    Logout:
+    <img width="475" height="281" alt="image" src="https://github.com/user-attachments/assets/58dc9ca5-07f1-4377-b9e3-c9be027af83a" />
+  </p>
+</div>
+
+<div>
+  <h1>Diagrama de Componentes</h1>
+  <p>Sequência:</p>
+  <ul>
+    <li>Frontend (Angular/React/Vue) acessa somente o API Gateway.</li>
+    <li>API Gateway (Node.js) faz roteamento para os microsserviços.</li>
+    Microsserviços:
+    <li>MS Cliente → PostgreSQL</li>
+    <li>MS Conta → PostgreSQL (CQRS: escrita + leitura)</li>
+    <li>MS Gerente → PostgreSQL</li>
+    <li>MS Autenticação → MongoDB</li>
+    <li>Mensageria: RabbitMQ (usado em SAGA e CQRS).</li>
+  </ul>
+  <p>
+    <img width="1282" height="559" alt="image" src="https://github.com/user-attachments/assets/31968479-aa51-4850-a311-80408d54e4a9" />
+  </p>
+</div>
