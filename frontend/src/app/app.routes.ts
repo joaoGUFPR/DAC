@@ -9,5 +9,5 @@ export const routes: Routes = [
     { path: 'login', component: Login },
     { path: 'autocadastro', component: Autocadastro},
     { path: 'tela-inicial', component: TelaInicial},
-    {path: 'alteraco-perfil', component: AlterarPerfilComponent}
+    { path: 'alteracao-perfil', component: AlterarPerfilComponent}
 ];
