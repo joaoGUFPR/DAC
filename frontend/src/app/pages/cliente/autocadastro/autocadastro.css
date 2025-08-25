@@ -121,3 +121,9 @@ form button[type="button"]:hover {
 .form-buttons button {
     width: 48%;
 }
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
