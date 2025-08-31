@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TelaInicial } from './tela-inicial';
+import { TelaInicialGerente } from './tela-inicial-gerente';
 
 describe('TelaInicial', () => {
-  let component: TelaInicial;
-  let fixture: ComponentFixture<TelaInicial>;
+  let component: TelaInicialGerente;
+  let fixture: ComponentFixture<TelaInicialGerente>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TelaInicial]
+      imports: [TelaInicialGerente]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TelaInicial);
+    fixture = TestBed.createComponent(TelaInicialGerente);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
