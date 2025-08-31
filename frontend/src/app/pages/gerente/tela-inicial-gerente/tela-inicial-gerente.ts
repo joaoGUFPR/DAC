@@ -1,0 +1,38 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-tela-inicial',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './tela-inicial-gerente.html',
+  styleUrl: './tela-inicial-gerente.css'
+})
+export class TelaInicialGerente {
+  pedidos = [
+    { cpf: '123.456.789-00', nome: 'Ana Beatriz Santos', salario: 4250 },
+    { cpf: '987.654.321-11', nome: 'Bruno Almeida', salario: 6100 },
+    { cpf: '111.222.333-44', nome: 'Carla Nogueira', salario: 3500 },
+    { cpf: '555.666.777-88', nome: 'Diego Martins', salario: 7200 },
+    { cpf: '222.333.444-55', nome: 'Eduarda Castro', salario: 2950 },
+    { cpf: '333.444.555-66', nome: 'Felipe Souza', salario: 5800 },
+    { cpf: '444.555.666-77', nome: 'Gabriela Rocha', salario: 4750 },
+    { cpf: '555.888.999-00', nome: 'Henrique Lima', salario: 3200 },
+    { cpf: '666.777.888-11', nome: 'Isabela Ferreira', salario: 6750 },
+    { cpf: '777.888.999-22', nome: 'João Carvalho', salario: 8100 }
+  ];
+
+  mensagem: string = '';
+
+  aprovar(index: number) {
+    const pedido = this.pedidos[index];
+    this.pedidos.splice(index, 1);
+    this.mensagem = `Pedido de ${pedido.nome} aprovado com sucesso!`;
+  }
+
+  recusar(index: number) {
+    const pedido = this.pedidos[index];
+    this.pedidos.splice(index, 1);
+    this.mensagem = `Pedido de ${pedido.nome} foi recusado.`;
+  }
+}
