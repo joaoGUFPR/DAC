@@ -187,3 +187,28 @@
     <img width="473" height="831" alt="image" src="https://github.com/user-attachments/assets/368592d1-189b-448d-adf5-5e9505e77229" />
   </p>
 </div>
+
+<div>
+  <h1>Organograma das pastas
+    <p>
+BANTADS_PROJETO/
+├── frontend-angular/      <-- Projeto Angular
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── services/   
+│   │   │   └── pages/
+│   │   │   └── models/
+│   │   │   └── ...
+│   └── ...
+├── ms-cliente/            <-- Java/Spring Boot para o microserviço de Cliente
+│   ├── src/
+│   └── pom.xml
+├── ms-conta/              <-- Java/Spring Boot para o microserviço de Conta
+│   ├── src/
+│   └── pom.xml
+├── ms-gerente/            <-- Java/Spring Boot para o microserviço de Gerente
+│   ├── src/
+│   └── pom.xml
+└── api-gateway/           <-- API Gateway
+    </p>
+</div>
