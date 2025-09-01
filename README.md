@@ -187,3 +187,10 @@
     <img width="473" height="831" alt="image" src="https://github.com/user-attachments/assets/368592d1-189b-448d-adf5-5e9505e77229" />
   </p>
 </div>
+
+<div>
+  <h1>Organograma das pastas
+    <p>
+      <img width="808" height="513" alt="image" src="https://github.com/user-attachments/assets/f7ae6667-5fd7-4b1a-8286-d554d544cc11" />
+    </p>
+</div>
