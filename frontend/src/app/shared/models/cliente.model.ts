@@ -1,6 +1,11 @@
 import { Pessoa } from './pessoa.model';
 
 export class Cliente extends Pessoa {
+
+    public estado?: 'Aprovado' | 'Rejeitado';
+    public motivoRecusa?: string;
+    public dataRejeicao?: string;
+    
     constructor(
         cpf: string,
         nome: string,
