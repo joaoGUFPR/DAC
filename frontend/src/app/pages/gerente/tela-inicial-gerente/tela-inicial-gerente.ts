@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalRejeitarClienteComponent } from '../modal-rejeitarcliente/modal-rejeitarcliente';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -8,6 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './tela-inicial-gerente.html',
   styleUrl: './tela-inicial-gerente.css'
 })
+
 export class TelaInicialGerente {
   pedidos = [
     { cpf: '123.456.789-00', nome: 'Ana Beatriz Santos', salario: 4250 },
@@ -24,15 +27,25 @@ export class TelaInicialGerente {
 
   mensagem: string = '';
 
+  constructor(private modalService: NgbModal) {}
+
   aprovar(index: number) {
     const pedido = this.pedidos[index];
     this.pedidos.splice(index, 1);
     this.mensagem = `Pedido de ${pedido.nome} aprovado com sucesso!`;
   }
 
-  recusar(index: number) {
-    const pedido = this.pedidos[index];
-    this.pedidos.splice(index, 1);
-    this.mensagem = `Pedido de ${pedido.nome} foi recusado.`;
+  abrirModalRecusar(index: number) {
+    const modalRef = this.modalService.open(ModalRejeitarClienteComponent);
+    modalRef.componentInstance.cliente = this.pedidos[index];
+
+    modalRef.result.then(
+      () => {
+        this.pedidos.splice(index, 1);
+        this.mensagem = `Pedido de ${modalRef.componentInstance.cliente.nome} foi recusado.`;
+      },
+      () => {
+      }
+    );
   }
 }

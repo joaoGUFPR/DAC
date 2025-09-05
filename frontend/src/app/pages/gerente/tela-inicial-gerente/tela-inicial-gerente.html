@@ -31,7 +31,7 @@
           <td class="text-end">{{ pedido.salario | currency:'BRL':'symbol' }}</td>
           <td class="text-center">
             <button class="btn btn-success btn-sm me-2" (click)="aprovar(i)">Aprovar</button>
-            <button class="btn btn-outline-danger btn-sm" (click)="recusar(i)">Recusar</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="abrirModalRecusar(i)">Recusar</button>
           </td>
         </tr>
       </tbody>
