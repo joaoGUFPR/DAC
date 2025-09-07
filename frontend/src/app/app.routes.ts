@@ -6,6 +6,9 @@ import { TelaInicialGerente } from './pages/gerente/tela-inicial-gerente/tela-in
 import { AlterarPerfilComponent } from './pages/cliente/alteracao-de-perfil/alteracao-de-perfil';
 import { Depositar } from './pages/cliente/depositar/depositar';
 import { Saque } from './pages/cliente/saque/saque';
+import { AprovarCliente } from './pages/gerente/aprovar-cliente/aprovar-cliente';
+import { ModalRejeitarClienteComponent } from './pages/gerente/modal-rejeitarcliente/modal-rejeitarcliente';
+import { ConsultarClientes } from './pages/gerente/consultar-clientes/consultar-clientes';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,4 +19,6 @@ export const routes: Routes = [
     { path: 'deposito', component: Depositar},
     { path: 'saque', component: Saque},
     { path: 'gerente/tela-inicial', component: TelaInicialGerente},
+    { path: 'gerente/aprovar-cliente', component: AprovarCliente},
+    { path: 'gerente/consultar-cliente', component: ConsultarClientes}
 ];
