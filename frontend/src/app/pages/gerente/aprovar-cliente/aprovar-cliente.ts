@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Cliente } from '../../../shared/models/cliente.model';
 
+
 @Component({
   selector: 'app-aprovar-cliente',
   imports: [CommonModule, FormsModule],
@@ -28,7 +29,7 @@ clientesPendentes: (Cliente & { aprovado?: boolean, conta?: string, limite?: num
     cliente.aprovado = true;
     cliente.conta = conta;
     cliente.limite = limite;
-    
+
     console.log(`📧 Enviado e-mail para ${cliente.email} com a senha: ${senha}`);
 
     this.mensagem = `Cliente ${cliente.nome} aprovado! Conta: ${conta}, Limite: R$ ${limite.toFixed(2)}. Senha enviada por e-mail.`;
