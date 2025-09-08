@@ -1,6 +1,6 @@
 <div class="container">
     <h2> Cadastro de usuário </h2>
-    <form #formCadastro="ngForm" (ngSubmit)="cadastrarUsuario(formCadastro)">
+    <form #formCadastro="ngForm" (ngSubmit)="cadastrarUsuarioLocalStorage(formCadastro)">
         <div class="form-group">
             <label>Nome Completo:</label>
             <input type="text" name="nome" #nome="ngModel" [(ngModel)]="cliente.nome" required>

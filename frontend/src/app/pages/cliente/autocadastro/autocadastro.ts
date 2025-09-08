@@ -10,9 +10,7 @@ import { ClienteService } from '../../../services/cliente-service';
 @Component({
 
   selector: 'app-autocadastro',
-
   standalone: true,
-
   imports: [FormsModule, CommonModule],
   templateUrl: './autocadastro.html',
   styleUrl: './autocadastro.css'
@@ -44,6 +42,17 @@ export class Autocadastro {
     limite: 0
   }
 
+  cadastrarUsuarioLocalStorage(form: NgForm){
+    if (form.invalid) {
+      console.log("Formulário inválido, preencha todos os campos obrigatórios!");
+      return;
+    }else{
+      this.clienteService.salvarClienteLocalStorage(this.cliente);
+      alert('Cliente cadastrado com sucesso!');
+      this.limparFormulario(form);      
+      this.voltarLogin();
+    }
+  }
 
   cadastrarUsuario(form: NgForm) {
     console.log(this.cliente);
@@ -66,6 +75,7 @@ export class Autocadastro {
   }
 
   consultaCEP() {
+    /*
     //chamo o microserviço para buscar o CEP
     const cep = this.cliente.cep;
     //recebo o observable porém só pego os dados de interesse (motivo do 'any')
@@ -80,7 +90,8 @@ export class Autocadastro {
       }
 
     });
-
+    */
+   console.log(this.cliente.cep)
   }
 
 } 
