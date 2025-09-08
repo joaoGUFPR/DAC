@@ -5,6 +5,7 @@ import { AuthService } from './services/auth-service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuarioService } from './services/usuario-service';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,7 @@ import { Router } from '@angular/router';
 export class App {
   protected title = 'banco';
 
-  constructor(public authService: AuthService, public router: Router) {}
+  constructor(public authService: AuthService, public router: Router, private usuarioService: UsuarioService) {
+    this.usuarioService.inicializarUsuarios();
+  }  
 }
