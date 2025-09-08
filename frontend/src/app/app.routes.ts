@@ -11,6 +11,7 @@ import { ModalRejeitarClienteComponent } from './pages/gerente/modal-rejeitarcli
 import { ConsultarClientes } from './pages/gerente/consultar-clientes/consultar-clientes';
 import { TelaInicialAdm } from './pages/adm/tela-inicial-adm/tela-inicial-adm';
 import { RelatorioCliente } from './pages/adm/relatorio-cliente/relatorio-cliente';
+import { InsercaoGerente } from './pages/adm/insercao-gerente/insercao-gerente';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,5 +25,6 @@ export const routes: Routes = [
     { path: 'gerente/aprovar-cliente', component: AprovarCliente},
     { path: 'gerente/consultar-cliente', component: ConsultarClientes},
     { path: 'administrador/tela-inicial-adm', component: TelaInicialAdm},
-    { path: 'administrador/relatorio-cliente', component: RelatorioCliente}
+    { path: 'administrador/relatorio-cliente', component: RelatorioCliente},
+    { path: 'administrador/insercao-gerente', component: InsercaoGerente}
 ];
