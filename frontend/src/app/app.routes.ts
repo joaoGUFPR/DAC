@@ -14,6 +14,7 @@ import { RelatorioCliente } from './pages/adm/relatorio-cliente/relatorio-client
 import { InsercaoGerente } from './pages/adm/insercao-gerente/insercao-gerente';
 import { RemocaoGerente } from './pages/adm/remocao-gerente/remocao-gerente';
 import { ListagemGerente } from './pages/adm/listagem-gerente/listagem-gerente';
+import { AlteracaoGerente } from './pages/adm/alteracao-gerente/alteracao-gerente';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -30,5 +31,6 @@ export const routes: Routes = [
     { path: 'administrador/relatorio-cliente', component: RelatorioCliente},
     { path: 'administrador/insercao-gerente', component: InsercaoGerente},
     { path: 'administrador/remocao-gerente', component: RemocaoGerente},
-    { path: 'administrador/listagem-gerente', component: ListagemGerente}
+    { path: 'administrador/listagem-gerente', component: ListagemGerente},
+    { path: 'administrador/alterar-gerente', component: AlteracaoGerente}
 ];
