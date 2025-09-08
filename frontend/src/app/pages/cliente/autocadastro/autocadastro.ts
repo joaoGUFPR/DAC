@@ -39,7 +39,9 @@ export class Autocadastro {
     endereco: '',
     cep: '',
     complemento: '',
-    numero: ''
+    numero: '',
+    saldo: 0,
+    limite: 0
   }
 
 
