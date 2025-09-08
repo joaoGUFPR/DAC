@@ -12,6 +12,7 @@ import { ConsultarClientes } from './pages/gerente/consultar-clientes/consultar-
 import { TelaInicialAdm } from './pages/adm/tela-inicial-adm/tela-inicial-adm';
 import { RelatorioCliente } from './pages/adm/relatorio-cliente/relatorio-cliente';
 import { InsercaoGerente } from './pages/adm/insercao-gerente/insercao-gerente';
+import { RemocaoGerente } from './pages/adm/remocao-gerente/remocao-gerente';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,5 +27,6 @@ export const routes: Routes = [
     { path: 'gerente/consultar-cliente', component: ConsultarClientes},
     { path: 'administrador/tela-inicial-adm', component: TelaInicialAdm},
     { path: 'administrador/relatorio-cliente', component: RelatorioCliente},
-    { path: 'administrador/insercao-gerente', component: InsercaoGerente}
+    { path: 'administrador/insercao-gerente', component: InsercaoGerente},
+    { path: 'administrador/remocao-gerente', component: RemocaoGerente}
 ];
