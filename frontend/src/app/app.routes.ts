@@ -6,7 +6,6 @@ import { TelaInicialGerente } from './pages/gerente/tela-inicial-gerente/tela-in
 import { AlterarPerfilComponent } from './pages/cliente/alteracao-de-perfil/alteracao-de-perfil';
 import { Depositar } from './pages/cliente/depositar/depositar';
 import { Saque } from './pages/cliente/saque/saque';
-import { TelaInicialAdministrador } from './pages/administrador/tela-inicial-administrador/tela-inicial-administrador';
 import { VisualizarClientes } from './pages/gerente/visualizar-clientes/visualizar-clientes';
 import { AprovarCliente } from './pages/gerente/aprovar-cliente/aprovar-cliente';
 import { ModalRejeitarClienteComponent } from './pages/gerente/modal-rejeitarcliente/modal-rejeitarcliente';
@@ -17,7 +16,7 @@ import { InsercaoGerente } from './pages/adm/insercao-gerente/insercao-gerente';
 import { RemocaoGerente } from './pages/adm/remocao-gerente/remocao-gerente';
 import { ListagemGerente } from './pages/adm/listagem-gerente/listagem-gerente';
 import { AlteracaoGerente } from './pages/adm/alteracao-gerente/alteracao-gerente';
-//import { TelaInicialAdministrador } from './pages/administrador/tela-inicial-administrador/tela-inicial-administrador';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -28,9 +27,7 @@ export const routes: Routes = [
     { path: 'deposito', component: Depositar},
     { path: 'saque', component: Saque},
     { path: 'gerente/tela-inicial', component: TelaInicialGerente},
-    //{ path: 'administrador/tela-inicial', component: TelaInicialAdministrador},
-    { path: 'gerente/visualizar-clientes', component: VisualizarClientes}
-    //{ path: 'administrador/tela-inicial', component: TelaInicialAdministrador},
+    { path: 'gerente/visualizar-clientes', component: VisualizarClientes},
     { path: 'gerente/aprovar-cliente', component: AprovarCliente},
     { path: 'gerente/consultar-cliente', component: ConsultarClientes},
     { path: 'administrador/tela-inicial-adm', component: TelaInicialAdm},

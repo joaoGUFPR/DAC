@@ -5,9 +5,7 @@ export class Cliente extends Pessoa {
     public status?: 'Aprovado' | 'Rejeitado';
     public motivoRecusa?: string;
     public dataRejeicao?: string;
-    public saldo: number;
-    public limite: number;
-    
+       
     constructor(
         cpf: string,
         nome: string,
@@ -18,8 +16,10 @@ export class Cliente extends Pessoa {
         public cep: string,
         public complemento: string,
         public numero: string,
-        saldo?: number,
-        limite?: number
+        public cidade: string,
+        public uf: string,
+        public saldo: number,
+        public limite: number
     ) {
         super(cpf, nome, email, telefone); 
         this.saldo = saldo ?? 0;

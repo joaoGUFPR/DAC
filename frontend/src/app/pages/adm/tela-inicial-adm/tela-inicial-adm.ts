@@ -31,14 +31,14 @@ export class TelaInicialAdm {
 
     const clientes: { [cpfGerente: string]: ClienteConta[] } = {
       "111.111.111-11": [
-        new ClienteConta("123", "Ana", "ana@email.com", "11999999999", 2500, "Rua A", "01001-000", "Ap 101", "123", 2000, 1250, "São Paulo", "SP"),
-        new ClienteConta("124", "Bruno", "bruno@email.com", "11888888888", 1800, "Rua B", "02002-000", "Casa", "456", -500, 0, "São Paulo", "SP")
+        new ClienteConta("123", "Ana", "ana@email.com", "11999999999", 2500, "Rua A", "01001-000", "Ap 101", "123", "São Paulo", "SP", 2000, 1250),
+        new ClienteConta("124", "Bruno", "bruno@email.com", "11888888888", 1800, "Rua B", "02002-000", "Casa", "456", "São Paulo", "SP", -500, 0)
       ],
       "222.222.222-22": [
-        new ClienteConta("125", "Carlos", "carlos@email.com", "11777777777", 2000, "Rua C", "03003-000", "Ap 201", "789", 1000, 1000, "São Paulo", "SP")
+        new ClienteConta("125", "Carlos", "carlos@email.com", "11777777777", 2000, "Rua C", "03003-000", "Ap 201", "789", "São Paulo", "SP", 1000, 1000)
       ],
       "333.333.333-33": [
-        new ClienteConta("126", "Daniela", "daniela@email.com", "11666666666", 2200, "Rua D", "04004-000", "Ap 301", "321", -200, 0, "São Paulo", "SP")
+        new ClienteConta("126", "Daniela", "daniela@email.com", "11666666666", 2200, "Rua D", "04004-000", "Ap 301", "321", "São Paulo", "SP", -200, 0)
       ]
     };
 

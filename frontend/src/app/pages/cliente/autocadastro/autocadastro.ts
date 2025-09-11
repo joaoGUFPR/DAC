@@ -38,6 +38,8 @@ export class Autocadastro {
     cep: '',
     complemento: '',
     numero: '',
+    cidade: '',
+    uf: '',
     saldo: 0,
     limite: 0
   }

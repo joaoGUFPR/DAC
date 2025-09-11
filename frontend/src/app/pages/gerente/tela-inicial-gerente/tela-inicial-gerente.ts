@@ -43,6 +43,8 @@ export class TelaInicialGerente {
       '00000-000',
       'Complemento',
       '123',
+      'Cidade Padrão',
+      'SP',
       pedido.salario,
       pedido.salario / 2
     );

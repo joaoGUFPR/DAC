@@ -9,17 +9,11 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-
-        <!-- Links gerais (quando logado) -->
-        <li class="nav-item" *ngIf="authService.role">
-          <a class="nav-link" routerLink="/cliente/tela-inicial">Início</a>
-        </li>
-        <li class="nav-item" *ngIf="authService.role">
-          <a class="nav-link" routerLink="/perfil">Meu Perfil</a>
-        </li>
-
+        
         <!-- Links exclusivos para cliente -->
         <ng-container *ngIf="authService.role === 'cliente'">
+          <a class="nav-link" routerLink="/cliente/tela-inicial">Início</a>
+          <a class="nav-link" routerLink="/perfil">Meu Perfil</a>
           <li class="nav-item"><a class="nav-link" routerLink="/extrato">Extrato</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="/deposito">Depósito</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="/saque">Saque</a></li>
@@ -28,14 +22,16 @@
 
         <!-- Links exclusivos para gerente -->
         <ng-container *ngIf="authService.role === 'gerente'">
-          <li class="nav-item"><a class="nav-link" routerLink="/gerente/clientes">Consultar Clientes</a></li>
+          <a class="nav-link" routerLink="gerente/tela-inicial">Início</a>
+          <li class="nav-item"><a class="nav-link" routerLink="/gerente/consultar-cliente">Consultar Clientes</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="/gerente/top3">Top 3 Clientes</a></li>
         </ng-container>
 
         <!-- Links exclusivos para admin -->
         <ng-container *ngIf="authService.role === 'admin'">
-          <li class="nav-item"><a class="nav-link" routerLink="/admin/gerentes">Gerenciar Gerentes</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/admin/clientes">Relatório de Clientes</a></li>
+          <a class="nav-link" routerLink="/administrador/tela-inicial-adm">Início</a>
+          <li class="nav-item"><a class="nav-link" routerLink="/administrador/listagem-gerente">Listar Gerentes</a></li>
+          
         </ng-container>
 
       </ul>

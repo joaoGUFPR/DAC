@@ -33,7 +33,7 @@ export class Login {
       } else if (usuarioEncontrado.papel === 'gerente'){
         this.router.navigate(['gerente/tela-inicial']);
       } else if (usuarioEncontrado.papel === 'admin'){
-        this.router.navigate(['administrador/tela-inicial']);
+        this.router.navigate(['administrador/tela-inicial-adm']);
       }
     } else {
       this.mensagemErro = "E-mail ou senha inválidos.";
