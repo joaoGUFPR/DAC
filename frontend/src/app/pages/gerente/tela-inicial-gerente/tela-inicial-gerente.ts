@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalRejeitarClienteComponent } from '../modal-rejeitarcliente/modal-rejeitarcliente';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Cliente } from '../../../shared/models/cliente.model';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -31,6 +32,27 @@ export class TelaInicialGerente {
 
   aprovar(index: number) {
     const pedido = this.pedidos[index];
+
+    const cliente = new Cliente(
+      pedido.cpf,
+      pedido.nome,
+      `${pedido.nome.split(' ')[0].toLowerCase()}@email.com`,
+      '11999999999',
+      pedido.salario,
+      'Endereço padrão',
+      '00000-000',
+      'Complemento',
+      '123',
+      pedido.salario,
+      pedido.salario / 2
+    );
+    
+    cliente.status = 'Aprovado';
+
+    const clientes = JSON.parse(localStorage.getItem('clientes') || '[]') as Cliente[];
+    clientes.push(cliente);
+    localStorage.setItem('clientes', JSON.stringify(clientes));
+
     this.pedidos.splice(index, 1);
     this.mensagem = `Pedido de ${pedido.nome} aprovado com sucesso!`;
   }
