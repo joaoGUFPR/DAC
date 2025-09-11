@@ -13,8 +13,8 @@ import { Cliente } from '../../../shared/models/cliente.model';
 export class AprovarCliente {
 
 clientesPendentes: (Cliente & { aprovado?: boolean, conta?: string, limite?: number })[] = [
-    new Cliente("123.456.789-00", "João da Silva", "joao@email.com", "11999999999", 1800, "Rua A", "00000-000", "Apto 1", "123"),
-    new Cliente("987.654.321-00", "Maria Oliveira", "maria@email.com", "11888888888", 2500, "Rua B", "11111-111", "Casa", "456")
+    new Cliente("123.456.789-00", "João da Silva", "joao@email.com", "11999999999", 1800, "Rua A", "00000-000", "Apto 1", "123", "São Paulo", "SP", 0, 1000),
+    new Cliente("987.654.321-00", "Maria Oliveira", "maria@email.com", "11888888888", 2500, "Rua B", "11111-111", "Casa", "456", "São Paulo", "SP", 0, 1000)
   ];
 
   mensagem: string = '';

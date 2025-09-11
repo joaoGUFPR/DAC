@@ -2,10 +2,10 @@ import { Pessoa } from './pessoa.model';
 
 export class Cliente extends Pessoa {
 
-    public estado?: 'Aprovado' | 'Rejeitado';
+    public status?: 'Aprovado' | 'Rejeitado';
     public motivoRecusa?: string;
     public dataRejeicao?: string;
-    
+       
     constructor(
         cpf: string,
         nome: string,
@@ -15,8 +15,14 @@ export class Cliente extends Pessoa {
         public endereco: string,
         public cep: string,
         public complemento: string,
-        public numero: string
+        public numero: string,
+        public cidade: string,
+        public uf: string,
+        public saldo: number,
+        public limite: number
     ) {
         super(cpf, nome, email, telefone); 
+        this.saldo = saldo ?? 0;
+        this.limite = limite ?? 0;
     }
 }
