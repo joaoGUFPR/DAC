@@ -37,7 +37,11 @@ export class Autocadastro {
     endereco: '',
     cep: '',
     complemento: '',
-    numero: ''
+    numero: '',
+    cidade: '',
+    uf: '',
+    saldo: 0,
+    limite: 0
   }
 
   cadastrarUsuarioLocalStorage(form: NgForm){

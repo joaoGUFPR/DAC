@@ -37,7 +37,7 @@ export class ModalRejeitarClienteComponent {
       return;
     }
 
-    this.cliente['estado'] = 'Rejeitado';
+    this.cliente['status'] = 'Rejeitado';
     this.cliente['motivoRecusa'] = this.motivoRejeicao;
     this.cliente['dataRejeicao'] = new Date().toISOString();
 

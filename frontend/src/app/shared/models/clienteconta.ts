@@ -11,11 +11,25 @@ export class ClienteConta extends Cliente {
     cep: string,
     complemento: string,
     numero: string,
-    public saldo: number,
-    public limite: number,
-    public cidade: string,
-    public uf: string   // mudei para `uf` para não conflitar com `estado` do cliente
+    cidade: string,
+    uf: string,   // mudei para `uf` para não conflitar com `estado` do cliente
+    saldo?: number, //Tá lá no cliente.modal
+    limite?: number, //Tá lá no cliente.modal
   ) {
-    super(cpf, nome, email, telefone, salario, endereco, cep, complemento, numero);
+    super(
+      cpf,
+      nome,
+      email,
+      telefone,
+      salario,
+      endereco,
+      cep,
+      complemento,
+      numero,
+      cidade,
+      uf,
+      saldo ?? 0,
+      limite ?? 0
+    );
   }
 }

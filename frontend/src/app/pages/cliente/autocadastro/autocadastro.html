@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <label>Endereço:</label>
-            <input type="text" name="endereco" #endereco="ngModel" [(ngModel)]="cliente.endereco" required>
+            <input type="text" name="endereco" #endereco="ngModel" [(ngModel)]="cliente.endereco" [readonly]="true" required>
             <div class="error" *ngIf="endereco.invalid && endereco.touched">
                 Endereço é obrigatório.
             </div>
@@ -46,6 +46,21 @@
         <div class="form-group">
             <label>Complemento:</label>
             <input type="text" name="complemento" #complemento="ngModel" [(ngModel)]="cliente.complemento">
+        </div>
+
+        <div class="form-group">
+            <label>Cidade:</label>
+            <input type="text" name="cidade" #cidade="ngModel" [(ngModel)]="cliente.cidade" [readonly]="true" required>
+            <div class="error" *ngIf="cidade.invalid && cidade.touched">
+                Cidade é obrigatório.
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Estado:</label>
+            <input type="text" name="uf" #uf="ngModel" [(ngModel)]="cliente.uf" [readonly]="true" required>
+            <div class="error" *ngIf="uf.invalid && uf.touched">
+                Estado é obrigatório.
+            </div>
         </div>
         <div class="form-group telefone">
             <label>Telefone:</label>

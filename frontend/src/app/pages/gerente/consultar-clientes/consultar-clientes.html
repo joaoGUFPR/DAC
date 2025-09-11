@@ -25,7 +25,7 @@
         <td>{{ cliente.cpf }}</td>
         <td>{{ cliente.nome }}</td>
         <td>{{ cliente.cidade }}</td>
-        <td>{{ cliente.estado }}</td>
+        <td>{{ cliente.uf }}</td>
         <td [ngClass]="{'text-danger': cliente.saldo < 0, 'text-success': cliente.saldo >= 0}">
           {{ cliente.saldo | currency:'BRL' }}
         </td>
