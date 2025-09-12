@@ -27,45 +27,35 @@ export class Autocadastro {
     private clienteService: ClienteService) { }
 
 
-  cliente: Cliente = {
-
-    cpf: '',
-    nome: '',
-    email: '',
-    telefone: '',
-    salario: 0,
-    endereco: '',
-    cep: '',
-    complemento: '',
-    numero: '',
-    cidade: '',
-    uf: '',
-    saldo: 0,
-    limite: 0
-  }
+  cliente: Cliente = new Cliente(
+    '', // cpf
+    '', // nome
+    '', // email
+    '', // telefone
+    0,  // salario
+    '', // endereco
+    '', // cep
+    '', // complemento
+    '', // numero
+    '', // cidade
+    '', // uf
+    0,  // saldo
+    0   // limite
+  );
 
   cadastrarUsuarioLocalStorage(form: NgForm){
     if (form.invalid) {
       console.log("Formulário inválido, preencha todos os campos obrigatórios!");
       return;
     }else{
-      this.clienteService.salvarClienteLocalStorage(this.cliente);
+      let salarioString = String(this.cliente.salario);
+      //salarioString = salarioString.replace(',', '.');
+      this.cliente.salario = parseFloat(salarioString);
+      this.clienteService.salvarClientesTempLocalStorage(this.cliente);
       alert('Cliente cadastrado com sucesso!');
       this.limparFormulario(form);      
       this.voltarLogin();
     }
-  }
-
-  cadastrarUsuario(form: NgForm) {
-    console.log(this.cliente);
-    if (form.invalid) {
-      console.log("Formulário inválido, preencha todos os campos obrigatórios!");
-      return;
-    }
-
-    this.limparFormulario;
-    this.voltarLogin();
-
   }
 
   limparFormulario(form: NgForm) {

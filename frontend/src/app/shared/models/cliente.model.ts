@@ -5,6 +5,8 @@ export class Cliente extends Pessoa {
     public status?: 'Aprovado' | 'Rejeitado';
     public motivoRecusa?: string;
     public dataRejeicao?: string;
+    public papel?: 'cliente' | 'gerente' | 'admin';
+    public senha?: string;
        
     constructor(
         cpf: string,
@@ -19,10 +21,16 @@ export class Cliente extends Pessoa {
         public cidade: string,
         public uf: string,
         public saldo: number,
-        public limite: number
+        public limite: number,
+        senha?: string,
+        papel?: 'cliente' | 'gerente' | 'admin'
+        
     ) {
         super(cpf, nome, email, telefone); 
         this.saldo = saldo ?? 0;
         this.limite = limite ?? 0;
+        this.senha = senha;
+        this.papel = papel ?? 'cliente'; 
+        
     }
 }

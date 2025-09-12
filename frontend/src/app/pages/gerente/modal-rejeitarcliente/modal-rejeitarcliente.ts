@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Cliente } from '../../../shared/models/cliente.model';
 
+
 @Component({
   selector: 'app-modal-rejeitar-cliente',
   imports: [CommonModule, FormsModule],

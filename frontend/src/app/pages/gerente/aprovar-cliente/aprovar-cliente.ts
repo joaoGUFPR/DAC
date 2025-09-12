@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Cliente } from '../../../shared/models/cliente.model';
+import { ClienteService } from '../../../services/cliente-service';
 
 
 @Component({
@@ -11,15 +12,35 @@ import { Cliente } from '../../../shared/models/cliente.model';
   styleUrl: './aprovar-cliente.css'
 })
 export class AprovarCliente {
+clientesTemp: any[] = [];
+clientesPendentes: any[] = [];
+mensagem: string = '';
+sucesso: boolean = false;
 
-clientesPendentes: (Cliente & { aprovado?: boolean, conta?: string, limite?: number })[] = [
-    new Cliente("123.456.789-00", "João da Silva", "joao@email.com", "11999999999", 1800, "Rua A", "00000-000", "Apto 1", "123", "São Paulo", "SP", 0, 1000),
-    new Cliente("987.654.321-00", "Maria Oliveira", "maria@email.com", "11888888888", 2500, "Rua B", "11111-111", "Casa", "456", "São Paulo", "SP", 0, 1000)
-  ];
+constructor(private clienteService: ClienteService) {
+    this.clientesTemp = this.clienteService.listarClientesLocalStorage("clientesTemp");
+    this.aplicarLimite();    
+  }
 
-  mensagem: string = '';
-  sucesso: boolean = false;
+calcularLimite(cliente: Cliente) {
+  if(cliente.salario <= 2000.00){
+    cliente.limite = cliente.salario/2;
+  }else {
+    cliente.limite = 0.0;
+  }
+}
 
+aplicarLimite(){
+  for(let cliente of this.clientesTemp){
+    this.calcularLimite(cliente);
+  }
+}
+
+criarSenha(cliente: Cliente){
+    cliente.senha = "tads";
+    this.clienteService.salvarClienteLocalStorage(cliente);
+  }
+  
   aprovar(cliente: Cliente & { aprovado?: boolean, conta?: string, limite?: number }) {
     const conta = Math.floor(1000 + Math.random() * 9000).toString();
 
@@ -27,6 +48,8 @@ clientesPendentes: (Cliente & { aprovado?: boolean, conta?: string, limite?: num
 
     const limite = cliente.salario >= 2000 ? cliente.salario / 2 : 0;
     cliente.aprovado = true;
+    cliente.papel = 'cliente';
+    cliente.senha = 'tads';
     cliente.conta = conta;
     cliente.limite = limite;
 

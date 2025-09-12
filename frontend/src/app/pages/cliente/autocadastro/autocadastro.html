@@ -24,14 +24,14 @@
         </div>
         <div class="form-group cep">
             <label>CEP:</label>
-            <input type="text" name="cep" #cep="ngModel" [(ngModel)]="cliente.cep" (blur)="consultaCEP()" required>
+            <input type="text" name="cep" #cep="ngModel" [(ngModel)]="cliente.cep" required>
             <div class="error" *ngIf="cep.invalid && cep.touched">
                 CEP é obrigatório.
             </div>
         </div>
         <div class="form-group">
             <label>Endereço:</label>
-            <input type="text" name="endereco" #endereco="ngModel" [(ngModel)]="cliente.endereco" [readonly]="true" required>
+            <input type="text" name="endereco" #endereco="ngModel" [(ngModel)]="cliente.endereco"  required>
             <div class="error" *ngIf="endereco.invalid && endereco.touched">
                 Endereço é obrigatório.
             </div>
@@ -50,14 +50,14 @@
 
         <div class="form-group">
             <label>Cidade:</label>
-            <input type="text" name="cidade" #cidade="ngModel" [(ngModel)]="cliente.cidade" [readonly]="true" required>
+            <input type="text" name="cidade" #cidade="ngModel" [(ngModel)]="cliente.cidade" required>
             <div class="error" *ngIf="cidade.invalid && cidade.touched">
                 Cidade é obrigatório.
             </div>
         </div>
         <div class="form-group">
             <label>Estado:</label>
-            <input type="text" name="uf" #uf="ngModel" [(ngModel)]="cliente.uf" [readonly]="true" required>
+            <input type="text" name="uf" #uf="ngModel" [(ngModel)]="cliente.uf"  required>
             <div class="error" *ngIf="uf.invalid && uf.touched">
                 Estado é obrigatório.
             </div>
@@ -67,6 +67,13 @@
             <input type="text" name="telefone" #telefone="ngModel" [(ngModel)]="cliente.telefone" required>
             <div class="error" *ngIf="telefone.invalid && telefone.touched">
                 Telefone é obrigatório.
+            </div>
+        </div>
+        <div class="form-group salario">
+            <label>Salário:</label>
+            <input type="text" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario" required>
+            <div class="error" *ngIf="salario.invalid && salario.touched">
+                Salário é obrigatório.
             </div>
         </div>
         <div class="form-buttons">

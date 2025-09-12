@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ModalRejeitarClienteComponent } from '../modal-rejeitarcliente/modal-rejeitarcliente';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Cliente } from '../../../shared/models/cliente.model';
+import { ClienteService } from '../../../services/cliente-service';
+import { GerenteService } from '../../../services/gerente-service';
+
+const LS_CHAVE = "clientes"
+const LS_CHAVE_TEMP = "clientesPendentes"
 
 @Component({
   selector: 'app-tela-inicial',
@@ -13,62 +18,51 @@ import { Cliente } from '../../../shared/models/cliente.model';
 })
 
 export class TelaInicialGerente {
-  pedidos = [
-    { cpf: '123.456.789-00', nome: 'Ana Beatriz Santos', salario: 4250 },
-    { cpf: '987.654.321-11', nome: 'Bruno Almeida', salario: 6100 },
-    { cpf: '111.222.333-44', nome: 'Carla Nogueira', salario: 3500 },
-    { cpf: '555.666.777-88', nome: 'Diego Martins', salario: 7200 },
-    { cpf: '222.333.444-55', nome: 'Eduarda Castro', salario: 2950 },
-    { cpf: '333.444.555-66', nome: 'Felipe Souza', salario: 5800 },
-    { cpf: '444.555.666-77', nome: 'Gabriela Rocha', salario: 4750 },
-    { cpf: '555.888.999-00', nome: 'Henrique Lima', salario: 3200 },
-    { cpf: '666.777.888-11', nome: 'Isabela Ferreira', salario: 6750 },
-    { cpf: '777.888.999-22', nome: 'João Carvalho', salario: 8100 }
-  ];
-
+  clientesPendentes: any[] = [];
+  clientesAprovados: Cliente[] = [];
+  clientesRecusados: Cliente[] = [];
   mensagem: string = '';
 
-  constructor(private modalService: NgbModal) {}
-
-  aprovar(index: number) {
-    const pedido = this.pedidos[index];
-
-    const cliente = new Cliente(
-      pedido.cpf,
-      pedido.nome,
-      `${pedido.nome.split(' ')[0].toLowerCase()}@email.com`,
-      '11999999999',
-      pedido.salario,
-      'Endereço padrão',
-      '00000-000',
-      'Complemento',
-      '123',
-      'Cidade Padrão',
-      'SP',
-      pedido.salario,
-      pedido.salario / 2
-    );
-    
-    cliente.status = 'Aprovado';
-
-    const clientes = JSON.parse(localStorage.getItem('clientes') || '[]') as Cliente[];
-    clientes.push(cliente);
-    localStorage.setItem('clientes', JSON.stringify(clientes));
-
-    this.pedidos.splice(index, 1);
-    this.mensagem = `Pedido de ${pedido.nome} aprovado com sucesso!`;
+  constructor(private modalService: NgbModal,private gerenteService: GerenteService
+  ) {
   }
 
-  abrirModalRecusar(index: number) {
+  ngOnInit() {
+  this.carregarPedidos();
+  this.clientesAprovados = this.gerenteService.carregarClientesAprovados();
+  }
+
+  carregarPedidos() {
+    this.clientesPendentes = this.gerenteService.carregarClientesPendentes();
+  }
+
+  aprovar(cliente: Cliente) {
+  this.gerenteService.aprovar(cliente);
+  // atualiza a tela
+  this.clientesPendentes = this.clientesPendentes.filter(c => c.cpf !== cliente.cpf);
+  this.clientesAprovados = this.gerenteService.carregarClientesAprovados();
+
+  this.mensagem = `Cliente ${cliente.nome} aprovado com sucesso!`;
+}
+
+  removerClienteLocalStorage(cliente: Cliente) {
+    this.gerenteService.removerClienteLocalStorage(cliente);
+  }
+
+  abrirModalRecusar(cliente: Cliente) {
     const modalRef = this.modalService.open(ModalRejeitarClienteComponent);
-    modalRef.componentInstance.cliente = this.pedidos[index];
+    modalRef.componentInstance.cliente = cliente;
 
     modalRef.result.then(
       () => {
-        this.pedidos.splice(index, 1);
-        this.mensagem = `Pedido de ${modalRef.componentInstance.cliente.nome} foi recusado.`;
+        this.clientesPendentes = this.clientesPendentes.filter(c => c.cpf !== cliente.cpf);
+        this.removerClienteLocalStorage(cliente);
+        this.mensagem = `Cliente ${cliente.nome} recusado com sucesso!`;
+        console.log(`Cliente recusado: ${JSON.stringify(cliente)}`);
+        this.clientesRecusados.push(cliente);
       },
       () => {
+        this.mensagem = "Ação cancelada.";
       }
     );
   }
