@@ -29,7 +29,7 @@ export const routes: Routes = [
     { path: 'gerente/tela-inicial', component: TelaInicialGerente},
     { path: 'gerente/visualizar-clientes', component: VisualizarClientes},
     { path: 'gerente/aprovar-cliente', component: AprovarCliente},
-    { path: 'gerente/consultar-cliente', component: ConsultarClientes},
+//  { path: 'gerente/consultar-cliente', component: ConsultarClientes},
     { path: 'administrador/tela-inicial-adm', component: TelaInicialAdm},
     { path: 'administrador/relatorio-cliente', component: RelatorioCliente},
     { path: 'administrador/insercao-gerente', component: InsercaoGerente},
