@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Cliente } from '../shared/models/cliente.model';
 
-const LS_CHAVE = "usuarios";
+const LS_USER = "user";
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +9,24 @@ const LS_CHAVE = "usuarios";
 export class UsuarioService {
   
   constructor() { }
-  
-  public listarTodos(): any[] {
-    const usuarios = localStorage.getItem(LS_CHAVE);
-    return usuarios ? JSON.parse(usuarios) : [];
+  // Retorna o usuário logado ou null se não houver
+  getUsuarioLogado(): Cliente | null {
+    const userStr = localStorage.getItem(LS_USER);
+    return userStr ? JSON.parse(userStr) as Cliente : null;
+  }
+  // Cria o localStorage do usuário
+  setUsuarioLogado(usuario: Cliente): void {
+    localStorage.setItem(LS_USER, JSON.stringify(usuario));
+  }
+  // Remove o usuário do localStorage (logout)
+  limparUsuario(): void {
+    localStorage.removeItem(LS_USER);
   }
 
-  public salvar (usuario: any): void {
-    const usuarios = this.listarTodos();
-    usuarios.push(usuario);
-    localStorage.setItem(LS_CHAVE, JSON.stringify(usuarios));
+  // Verifica se há um usuário logado
+  isLogado(): boolean {
+    return !!localStorage.getItem(LS_USER);
   }
 
-  public inicializarUsuarios(): void {
-      // Se não houver usuários, cria os usuários padrão
-    if (this.listarTodos().length === 0) {
-      // Cliente Padrão (pode vir do autocadastro)
-      this.salvar({ email: 'cliente@email.com', senha: 'tads', papel: 'cliente' });
-      // Gerente Padrão
-      this.salvar({ email: 'gerente@email.com', senha: 'tads', papel: 'gerente' });
-      // Admin Padrão
-      this.salvar({ email: 'admin@email.com', senha: 'tads', papel: 'admin' });
-    }
-  }
+    
 }

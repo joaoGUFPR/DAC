@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TelaInicialService } from '../../../services/tela-inicial-service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Cliente } from '../../../shared/models/cliente.model';
+import { UsuarioService } from '../../../services/usuario-service';
 
 @Component({
   selector: 'app-tela-inicial',
@@ -11,16 +13,23 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './tela-inicial-cliente.css'
 })
 export class TelaInicialCliente implements OnInit {
- 
+  
+  usuario: Cliente | null = null;
   saldo: number = 0;
   valorOperacao: number = 0;
   acaoSelecionada: string | null = null;
   mensagem: string = '';
 
-  constructor(private telaService: TelaInicialService) {}
+  constructor(private telaService: TelaInicialService, private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
-    this.saldo = this.telaService.obterSaldo();
+    this.usuario = this.usuarioService.getUsuarioLogado();
+    // Se houver um usuário logado, pega o saldo
+    if (this.usuario) {
+      this.saldo = this.usuario.saldo;
+    } else {
+      this.mensagem = 'Nenhum usuário autenticado.';
+    }
   }
 
   depositar() {

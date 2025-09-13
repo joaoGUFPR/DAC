@@ -5,6 +5,7 @@ import { ClienteService } from './cliente-service';
 import { Cliente } from '../shared/models/cliente.model';
 
 const LS_CHAVE = "clientes"
+const LS_USER = "user";
 
 // Interface usuario
 export interface User {
@@ -42,6 +43,8 @@ export class LoginService {
     if (usuarioEncontrado && credenciais.senha === usuarioEncontrado.senha) {
       this.authService.login(usuarioEncontrado.papel!); // O '!' diz ao TS que temos a certeza que o papel existe
       this.redirecionarPorPapel(usuarioEncontrado.papel!);
+      // Salva usuário autenticado no localStorage
+      localStorage.setItem(LS_USER, JSON.stringify(usuarioEncontrado));
       return true;
     }
     return false;

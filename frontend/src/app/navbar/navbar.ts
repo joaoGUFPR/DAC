@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { UsuarioService } from '../services/usuario-service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,8 +14,9 @@ import { RouterLink } from '@angular/router';
 })
 export class Navbar {
 
-  constructor(public authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router, private userService: UsuarioService) { }
   logout() {
+    this.userService.limparUsuario();
     this.authService.logout();
     alert('Logout efetuado com sucesso!');
     this.router.navigate(['/login']);
