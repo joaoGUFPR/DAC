@@ -67,7 +67,7 @@ export class ClienteService {
     return false;
   }
 
-  getClienteByCpf(cpf: string): Cliente | undefined {
+  getClienteByCpf(cpf: String): Cliente | undefined {
     const clientes = this.listarClientesLocalStorage(LS_CHAVE);
     return clientes.find(c => c.cpf === cpf);
   }
@@ -81,15 +81,26 @@ export class ClienteService {
     }
   }
 
-  removerCliente(cpf: string): void {
+  removerCliente(cpf: String): void {
     let clientes = this.listarClientesLocalStorage(LS_CHAVE);
     clientes = clientes.filter(c => c.cpf !== cpf);
     localStorage[LS_CHAVE] = JSON.stringify(clientes);
   }
 
-  transferir(sacadorCpf: string, cpf: string, valor: number): boolean {
-    throw new Error('Method not implemented.');
-    return true;
+  transferir(cpf: string, valor: number) {
+    const clientes = this.listarClientesLocalStorage(LS_CHAVE);
+    const origemCliente = JSON.parse(localStorage.getItem('user') || '{}');
+    const indexOrigem = clientes.findIndex(c => c.cpf === origemCliente.cpf);
+    const indexDestino = clientes.findIndex(c => c.cpf === cpf);
+    //const destinoCliente = clientes[indexDestino];
+    //const clienteAux = clientes.findIndex(c=> origemCliente.cpf !== c.cpf && cpf !== c.cpf);
+    if (indexOrigem !== -1 && indexDestino !== -1 && valor > 0 && clientes[indexOrigem].saldo >= valor) {
+      clientes[indexOrigem].saldo -= valor;
+      clientes[indexDestino].saldo += valor;
+      localStorage[LS_CHAVE] = JSON.stringify(clientes);
+      return true;
+    }
+    return false;    
   }
 
 }

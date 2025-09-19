@@ -58,7 +58,7 @@ export class TelaInicialCliente implements OnInit {
 
   transferir(sacadorCpf: string, valor: number) {
     if (valor > 0 && valor <= this.saldo) {
-      const sucesso = this.clienteService.transferir(sacadorCpf, this.usuario!.cpf, valor);
+      const sucesso = this.clienteService.transferir(sacadorCpf,  valor);
       if (sucesso) {
         this.saldo = this.clienteService.getSaldo(this.usuario!);
         this.mensagem = `Transferência de R$${valor} realizada com sucesso.`;
