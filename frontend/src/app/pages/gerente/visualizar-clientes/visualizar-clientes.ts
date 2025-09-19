@@ -3,11 +3,12 @@ import { Cliente } from '../../../shared/models/cliente.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-visualizar-clientes',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, NgxMaskDirective, NgxMaskPipe],
   templateUrl: './visualizar-clientes.html',
   styleUrl: './visualizar-clientes.css'
 })
@@ -31,4 +32,5 @@ export class VisualizarClientes {
       )
       .sort((a, b) => a.nome.localeCompare(b.nome));
   }
+
 }

@@ -38,16 +38,27 @@ export class ModalRejeitarClienteComponent {
       return;
     }
 
-    this.cliente['status'] = 'Rejeitado';
-    this.cliente['motivoRecusa'] = this.motivoRejeicao;
-    this.cliente['dataRejeicao'] = new Date().toISOString();
+    const resultado = {
+      cliente: this.cliente,
+      motivo: this.motivoRejeicao
+    };
 
-    this.atualizarCliente();
+    this.activeModal.close(resultado);
 
-    // Aqui futuramente você implementa envio real de e-mail usando backend
-    alert(`Cliente rejeitado. Email enviado para ${this.cliente.email}.`);
+    // this.cliente['status'] = 'Rejeitado';
+    // this.cliente['motivoRecusa'] = this.motivoRejeicao;
+    // this.cliente['dataRejeicao'] = new Date().toISOString();
 
-    this.activeModal.close();
-    this.router.navigate(['/tela-inicial-gerente']);
+    // this.atualizarCliente();
+
+    // // Aqui futuramente você implementa envio real de e-mail usando backend
+    // alert(`Cliente rejeitado. Email enviado para ${this.cliente.email}.`);
+
+    // this.activeModal.close();
+    // this.router.navigate(['/tela-inicial-gerente']);
+  }
+
+  fechar(): void {
+    this.activeModal.dismiss('cancel');
   }
 }
