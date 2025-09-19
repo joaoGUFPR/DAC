@@ -4,7 +4,7 @@
       <h3 class="card-title text-center">💸 Saque</h3>
       <p class="text-muted text-center">Informe o valor que deseja sacar da sua conta</p>
 
-      <form (ngSubmit)="sacar()">
+      <form (ngSubmit)="sacar(valorSaque)" #saqueForm="ngForm">
         <div class="mb-3">
           <label for="valor" class="form-label">Valor do Saque</label>
           <input
