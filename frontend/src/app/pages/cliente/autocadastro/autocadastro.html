@@ -10,7 +10,7 @@
         </div>
         <div class="form-group cpf">
             <label>CPF:</label>
-            <input type="text" name="cpf" #cpf="ngModel" [(ngModel)]="cliente.cpf" required>
+            <input type="text" name="cpf" #cpf="ngModel" [(ngModel)]="cliente.cpf" required mask="000.000.000-00">
             <div class="error" *ngIf="cpf.invalid && cpf.touched">
                 CPF é obrigatório.
             </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="form-group cep">
             <label>CEP:</label>
-            <input type="text" name="cep" #cep="ngModel" [(ngModel)]="cliente.cep" required>
+            <input type="text" name="cep" #cep="ngModel" [(ngModel)]="cliente.cep" required mask="00000-000">
             <div class="error" *ngIf="cep.invalid && cep.touched">
                 CEP é obrigatório.
             </div>

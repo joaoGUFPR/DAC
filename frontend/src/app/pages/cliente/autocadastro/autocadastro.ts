@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ClienteService } from '../../../services/cliente-service';
+import { NgxMaskDirective } from 'ngx-mask';
 
 
 @Component({
 
   selector: 'app-autocadastro',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NgxMaskDirective],
   templateUrl: './autocadastro.html',
   styleUrl: './autocadastro.css'
 
