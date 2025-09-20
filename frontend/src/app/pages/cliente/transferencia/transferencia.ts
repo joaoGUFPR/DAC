@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './transferencia.css'
 })
 export class Transferencia {
-  cpfDestino: string = '';
+  contaDestino: string = '';
   valor: number = 0;
   mensagem: string = '';
   sucesso: boolean = false;

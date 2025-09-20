@@ -42,6 +42,7 @@ export class GerenteService {
   aprovar(cliente: Cliente): void {
   cliente.status = 'Aprovado';
   cliente.senha = 'tads';
+  cliente.conta = this.gerarConta(cliente);
 
   // remove da lista clientesPendentes
   this.clientesPendentes = this.clientesPendentes.filter(c => c.cpf !== cliente.cpf);
@@ -72,5 +73,19 @@ export class GerenteService {
     atualizarClientesPendentes(clientes: Cliente[]): void {
       localStorage.setItem(LS_CHAVE_TEMP, JSON.stringify(clientes));
       this.clientesPendentes = clientes;
+    }
+
+    gerarConta(cliente: Cliente): string {
+      const clientes = this.carregarClientesAprovados();
+      // Gera número aleatório entre 1000 e 9999
+      const numeroConta = Math.floor(1000 + Math.random() * 9000).toString();
+      // Verifica se já existe
+      if (clientes.find(c => c.conta === numeroConta)) {
+        return this.gerarConta(cliente); // Gera novamente se já existir
+      }else{
+        cliente.conta = numeroConta;
+        return numeroConta;
+      }
+      
     }
 }
