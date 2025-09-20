@@ -7,6 +7,7 @@ export class Cliente extends Pessoa {
     public dataRejeicao?: string;
     public papel?: 'cliente' | 'gerente' | 'admin';
     public senha?: string;
+    public conta?: string;
        
     constructor(
         cpf: string,

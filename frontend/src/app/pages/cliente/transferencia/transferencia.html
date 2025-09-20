@@ -3,11 +3,11 @@
     <div class="card-body">
       <h4 class="card-title">Transferência</h4>
 
-      <form (ngSubmit)="realizarTransferencia(cpfDestino,valor)" #form="ngForm">
+      <form (ngSubmit)="realizarTransferencia(contaDestino,valor)" #form="ngForm">
         <div class="mb-3">
-          <label for="cpfDestino" class="form-label">CPF Destino</label>
-          <input type="text" id="cpfDestino" name="cpfDestino" class="form-control"
-                 [(ngModel)]="cpfDestino" required>
+          <label for="contaDestino" class="form-label">conta Destino</label>
+          <input type="text" id="contaDestino" name="contaDestino" class="form-control"
+                 [(ngModel)]="contaDestino" required>
         </div>
 
         <div class="mb-3">
