@@ -11,6 +11,7 @@ export class ClienteConta extends Cliente {
     cep: string,
     complemento: string,
     numero: string,
+    bairro:string,
     cidade: string,
     uf: string,   // mudei para `uf` para não conflitar com `estado` do cliente
     saldo?: number, //Tá lá no cliente.modal
@@ -26,6 +27,7 @@ export class ClienteConta extends Cliente {
       cep,
       complemento,
       numero,
+      bairro,
       cidade,
       uf,
       saldo ?? 0,
