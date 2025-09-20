@@ -79,22 +79,22 @@ export class LoginService {
     if (usuarios.length === 0) {
       // Agora criamos instâncias reais de Cliente
       this.clienteService.salvarClienteLocalStorage(
-        new Cliente('', 'Ana Cliente', 'cliente@email.com', '', 0, '', '', '', '', '', '', 0, 0, 'tads', 'cliente')
+        new Cliente('', 'Ana Cliente', 'cliente@email.com', '', 0, '', '', '', '', '', '', '', 0, 0, 'tads', 'cliente')
       );
       this.clienteService.salvarClienteLocalStorage(
-        new Cliente('', 'João Gerente', 'gerente@email.com', '', 0, '', '', '', '', '', '', 0, 0, 'tads', 'gerente')
+        new Cliente('', 'João Gerente', 'gerente@email.com', '', 0, '', '', '', '', '', '', '', 0, 0, 'tads', 'gerente')
       );
       this.clienteService.salvarClienteLocalStorage(
-        new Cliente('', 'Carla Admin', 'admin@email.com', '', 0, '', '', '', '', '', '', 0, 0, 'tads', 'admin')
+        new Cliente('', 'Carla Admin', 'admin@email.com', '', 0, '', '', '', '', '', '', '', 0, 0, 'tads', 'admin')
       );
       this.clienteService.salvarClientesTempLocalStorage(
-        new Cliente("111111111111", "João Silva", "joao@joao.com", "4198888888", 5000,  "Rua UM", "81050230", "Casa", "20", "Curitiba", "Paraná", 5000, 0)
+        new Cliente("111111111111", "João Silva", "joao@joao.com", "4198888888", 5000,  "Rua UM", "81050230", "Casa", "20", 'Pilarzinho1', "Curitiba", "Paraná", 5000, 0)
       );
       this.clienteService.salvarClientesTempLocalStorage(
-        new Cliente("66666666666", "Pedro Silva", "pedro@pedro.com", "119855556558", 1500, "Rua Dois", "2222222222", "Casa", "20", "Campinas", "São Paulo", 1500, 0)
+        new Cliente("66666666666", "Pedro Silva", "pedro@pedro.com", "119855556558", 1500, "Rua Dois", "2222222222", "Casa", "20", 'Pilarzinho2', "Campinas", "São Paulo", 1500, 0)
       );
       this.clienteService.salvarClientesTempLocalStorage(
-        new Cliente("77777777777", "Tadeu Silva", "tadeu@tadeu.com", "1112345678", 2500, "Rua Três", "33333333333", "Sobrado 1", "203", "Campinas", "São Paulo", 2500, 0)
+        new Cliente("77777777777", "Tadeu Silva", "tadeu@tadeu.com", "1112345678", 2500, "Rua Três", "33333333333", "Sobrado 1", "203", 'Pilarzinho3', "Campinas", "São Paulo", 2500, 0)
       );
     }
   }

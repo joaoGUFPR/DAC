@@ -18,6 +18,7 @@ export class Cliente extends Pessoa {
         public cep: string,
         public complemento: string,
         public numero: string,
+        public bairro: string,
         public cidade: string,
         public uf: string,
         public saldo: number,
