@@ -38,6 +38,7 @@ export class Autocadastro {
     '', // cep
     '', // complemento
     '', // numero
+    '', // bairro
     '', // cidade
     '', // uf
     0,  // saldo
@@ -49,7 +50,13 @@ export class Autocadastro {
       console.log("Formulário inválido, preencha todos os campos obrigatórios!");
       return;
     }else{
-      let salarioString = String(this.cliente.salario);
+      const salarioString = String(this.cliente.salario)
+      .replace(/\./g, '')     // remove separador de milhar
+      .replace(',', '.')      // substitui vírgula por ponto decimal
+      .replace('R$', '')      // remove prefixo, se houver
+      .trim();
+
+      //let salarioString = String(this.cliente.salario);
       //salarioString = salarioString.replace(',', '.');
       this.cliente.salario = parseFloat(salarioString);
       this.clienteService.salvarClientesTempLocalStorage(this.cliente);

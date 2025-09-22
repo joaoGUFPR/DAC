@@ -16,6 +16,7 @@
         <tr>
           <th scope="col">CPF</th>
           <th scope="col">Nome</th>
+          <th scope="col">Bairro</th>
           <th scope="col">Cidade</th>
           <th scope="col">Estado</th>
           <th scope="col" class="text-end">Saldo</th>
@@ -27,6 +28,7 @@
         <tr *ngFor="let cliente of clientesFiltrados">
           <td>{{ cliente.cpf | mask: '000.000.000-00' }}</td>
           <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.bairro }}</td>
           <td>{{ cliente.cidade}}</td>
           <td>{{ cliente.status }}</td>
           <td class="text-end">{{ cliente.saldo | currency:'BRL':'symbol' }}</td>

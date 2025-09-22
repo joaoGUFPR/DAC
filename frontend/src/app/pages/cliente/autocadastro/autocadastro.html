@@ -17,9 +17,10 @@
         </div>
         <div class="form-group email">
             <label>E-mail:</label>
-            <input type="text" name="email" #email="ngModel" [(ngModel)]="cliente.email" required>
+            <input type="text" name="email" #email="ngModel" [(ngModel)]="cliente.email" email required>
             <div class="error" *ngIf="email.invalid && email.touched">
-                E-mail é obrigatório.
+                <span *ngIf="email.errors?.['required']">E-mail é obrigatório.</span>
+                <span *ngIf="email.errors?.['email']">Formato de e-mail inválido.</span>
             </div>
         </div>
         <div class="form-group cep">
@@ -38,7 +39,7 @@
         </div>
         <div class="form-group numero">
             <label>Número:</label>
-            <input type="text" name="numero" #numero="ngModel" [(ngModel)]="cliente.numero" required>
+            <input type="text" name="numero" #numero="ngModel" [(ngModel)]="cliente.numero" required (keypress)="($event.charCode >= 48 && $event.charCode <= 57) ? true : $event.preventDefault()">
             <div class="error" *ngIf="numero.invalid && numero.touched">
                 Número é obrigatório.
             </div>
@@ -46,6 +47,14 @@
         <div class="form-group">
             <label>Complemento:</label>
             <input type="text" name="complemento" #complemento="ngModel" [(ngModel)]="cliente.complemento">
+        </div>
+
+        <div class="form-group">
+            <label>Bairro:</label>
+            <input type="text" name="bairro" #bairro="ngModel" [(ngModel)]="cliente.bairro" required>
+            <div class="error" *ngIf="bairro.invalid && bairro.touched">
+                Bairro é obrigatório.
+            </div>
         </div>
 
         <div class="form-group">
@@ -64,14 +73,14 @@
         </div>
         <div class="form-group telefone">
             <label>Telefone:</label>
-            <input type="text" name="telefone" #telefone="ngModel" [(ngModel)]="cliente.telefone" required>
+            <input type="text" name="telefone" #telefone="ngModel" [(ngModel)]="cliente.telefone" required mask="(00)0000-0000 || (00)00000-0000">
             <div class="error" *ngIf="telefone.invalid && telefone.touched">
                 Telefone é obrigatório.
             </div>
         </div>
         <div class="form-group salario">
             <label>Salário:</label>
-            <input type="text" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario" required>
+            <input type="text" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario" required mask="separator.2" prefix="R$ " thousandSeparator="." decimalMarker=",">
             <div class="error" *ngIf="salario.invalid && salario.touched">
                 Salário é obrigatório.
             </div>
