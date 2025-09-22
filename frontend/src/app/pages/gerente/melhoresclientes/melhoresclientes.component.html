@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🏆 Top 3 Melhores Clientes</h2>
+
+  <div *ngIf="melhores.length > 0; else semClientes">
+    <table class="table table-hover table-striped shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">CPF</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Saldo (R$)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of melhores">
+          <td>{{ cliente.cpf }}</td>
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.cidade }}</td>
+          <td>{{ cliente.estado }}</td>
+          <td class="fw-bold text-success">R$ {{ cliente.saldo | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #semClientes>
+    <div class="alert alert-warning text-center">
+      Nenhum cliente aprovado encontrado para este gerente.
+    </div>
+  </ng-template>
+</div>
