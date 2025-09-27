@@ -64,8 +64,6 @@
                 Cidade é obrigatório.
             </div>
         </div>
-
-        <!-- CAMPO DE ESTADO MODIFICADO -->
         <div class="form-group">
             <label>Estado:</label>
             <select name="uf" #uf="ngModel" [(ngModel)]="cliente.uf" class="form-control" required>
@@ -78,8 +76,6 @@
                 Estado é obrigatório.
             </div>
         </div>
-        <!-- FIM DA MODIFICAÇÃO -->
-
         <div class="form-group telefone">
             <label>Telefone:</label>
             <input type="text" name="telefone" #telefone="ngModel" [(ngModel)]="cliente.telefone" required mask="(00)0000-0000 || (00)00000-0000">
