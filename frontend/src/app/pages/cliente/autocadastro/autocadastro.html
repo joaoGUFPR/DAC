@@ -64,13 +64,22 @@
                 Cidade é obrigatório.
             </div>
         </div>
+
+        <!-- CAMPO DE ESTADO MODIFICADO -->
         <div class="form-group">
             <label>Estado:</label>
-            <input type="text" name="uf" #uf="ngModel" [(ngModel)]="cliente.uf"  required>
+            <select name="uf" #uf="ngModel" [(ngModel)]="cliente.uf" class="form-control" required>
+                <option [ngValue]="null" disabled>Selecione um estado...</option>
+                <option *ngFor="let estado of estadosBrasileiros" [value]="estado.sigla">
+                    {{ estado.nome }}
+                </option>
+            </select>
             <div class="error" *ngIf="uf.invalid && uf.touched">
                 Estado é obrigatório.
             </div>
         </div>
+        <!-- FIM DA MODIFICAÇÃO -->
+
         <div class="form-group telefone">
             <label>Telefone:</label>
             <input type="text" name="telefone" #telefone="ngModel" [(ngModel)]="cliente.telefone" required mask="(00)0000-0000 || (00)00000-0000">

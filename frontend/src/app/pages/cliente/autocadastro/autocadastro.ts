@@ -20,13 +20,38 @@ import { NgxMaskDirective } from 'ngx-mask';
 
 export class Autocadastro {
 
+  // Lista de estados brasileiros para popular o campo de seleção
+  estadosBrasileiros = [
+    { nome: 'Acre', sigla: 'AC' },
+    { nome: 'Alagoas', sigla: 'AL' },
+    { nome: 'Amapá', sigla: 'AP' },
+    { nome: 'Amazonas', sigla: 'AM' },
+    { nome: 'Bahia', sigla: 'BA' },
+    { nome: 'Ceará', sigla: 'CE' },
+    { nome: 'Distrito Federal', sigla: 'DF' },
+    { nome: 'Espírito Santo', sigla: 'ES' },
+    { nome: 'Goiás', sigla: 'GO' },
+    { nome: 'Maranhão', sigla: 'MA' },
+    { nome: 'Mato Grosso', sigla: 'MT' },
+    { nome: 'Mato Grosso do Sul', sigla: 'MS' },
+    { nome: 'Minas Gerais', sigla: 'MG' },
+    { nome: 'Pará', sigla: 'PA' },
+    { nome: 'Paraíba', sigla: 'PB' },
+    { nome: 'Paraná', sigla: 'PR' },
+    { nome: 'Pernambuco', sigla: 'PE' },
+    { nome: 'Piauí', sigla: 'PI' },
+    { nome: 'Rio de Janeiro', sigla: 'RJ' },
+    { nome: 'Rio Grande do Norte', sigla: 'RN' },
+    { nome: 'Rio Grande do Sul', sigla: 'RS' },
+    { nome: 'Rondônia', sigla: 'RO' },
+    { nome: 'Roraima', sigla: 'RR' },
+    { nome: 'Santa Catarina', sigla: 'SC' },
+    { nome: 'São Paulo', sigla: 'SP' },
+    { nome: 'Sergipe', sigla: 'SE' },
+    { nome: 'Tocantins', sigla: 'TO' }
+  ];
 
-  // injeção das dependências
-
-  constructor(private router: Router,
-
-    private clienteService: ClienteService) { }
-
+  constructor(private router: Router, private clienteService: ClienteService) { }
 
   cliente: Cliente = new Cliente(
     '', // cpf
@@ -49,15 +74,13 @@ export class Autocadastro {
     if (form.invalid) {
       console.log("Formulário inválido, preencha todos os campos obrigatórios!");
       return;
-    }else{
+    } else {
       const salarioString = String(this.cliente.salario)
-      .replace(/\./g, '')     // remove separador de milhar
-      .replace(',', '.')      // substitui vírgula por ponto decimal
-      .replace('R$', '')      // remove prefixo, se houver
-      .trim();
+        .replace(/\./g, '')      // remove separador de milhar
+        .replace(',', '.')       // substitui vírgula por ponto decimal
+        .replace('R$', '')       // remove prefixo, se houver
+        .trim();
 
-      //let salarioString = String(this.cliente.salario);
-      //salarioString = salarioString.replace(',', '.');
       this.cliente.salario = parseFloat(salarioString);
       this.clienteService.salvarClientesTempLocalStorage(this.cliente);
       alert('Cliente cadastrado com sucesso!');
@@ -75,23 +98,7 @@ export class Autocadastro {
   }
 
   consultaCEP() {
-    /*
-    //chamo o microserviço para buscar o CEP
-    const cep = this.cliente.cep;
-    //recebo o observable porém só pego os dados de interesse (motivo do 'any')
-    this.clienteService.buscaCep(cep).subscribe((dadosCep: any) => {
-      //em caso de sucesso
-      if (dadosCep && !dadosCep.erro) {
-        this.cliente.endereco = dadosCep.logradouro;
-        this.cliente.cep = dadosCep.cep;
-      } else {
-        // CEP inválido ou não encontrado
-        console.log('Digite um CEP válido.');
-      }
-
-    });
-    */
    console.log(this.cliente.cep)
   }
+}
 
-} 
