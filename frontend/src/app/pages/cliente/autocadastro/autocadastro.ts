@@ -75,6 +75,11 @@ export class Autocadastro {
       console.log("Formulário inválido, preencha todos os campos obrigatórios!");
       return;
     } else {
+      if (this.clienteService.getClienteByCpf(this.cliente.cpf) != undefined ||
+          this.clienteService.getClienteByCpfTemp(this.cliente.cpf) != undefined) {
+        alert('CPF já cadastrado. Por favor, utilize outro CPF.');
+        return;
+      }
       const salarioString = String(this.cliente.salario)
         .replace(/\./g, '')      // remove separador de milhar
         .replace(',', '.')       // substitui vírgula por ponto decimal

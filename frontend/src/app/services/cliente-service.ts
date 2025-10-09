@@ -72,6 +72,11 @@ export class ClienteService {
     return clientes.find(c => c.cpf === cpf);
   }
 
+  getClienteByCpfTemp(cpf: String): Cliente | undefined {
+    const clientes = this.listarClientesLocalStorage(LS_CHAVE_TEMP);
+    return clientes.find(c => c.cpf === cpf);
+  }
+
   atualizarCliente(clienteAtualizado: Cliente): void {
     const clientes = this.listarClientesLocalStorage(LS_CHAVE);
     const index = clientes.findIndex(c => c.cpf === clienteAtualizado.cpf);
