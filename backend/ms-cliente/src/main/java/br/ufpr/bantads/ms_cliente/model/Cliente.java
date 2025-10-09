@@ -1,6 +1,8 @@
 package br.ufpr.bantads.ms_cliente.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,5 +26,16 @@ public class Cliente {
     private String endereco;
     private String cep;
     private String complemento;
-    private String numero;
+    private String numero;    
+
+    @Enumerated(EnumType.STRING)
+    private StatusCliente status;
+
+    private String motivoRejeicao; // Para o requisito R11 [cite: 377]
+
+    public enum StatusCliente {
+        PENDENTE,
+        APROVADO,
+        REJEITADO
+    }
 }
