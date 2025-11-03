@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  msadministrador-db:
+    image: postgres:15
+    container_name: msadministrador-db
+    environment:
+      POSTGRES_DB: admin_db
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: admin_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - admin-db-data:/var/lib/postgresql/data
+    networks:
+      - ms-network
+
+  mscliente:
+    build: .
+    container_name: msadministrador
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://msadministrador-db:5432/admin_db
+      SPRING_DATASOURCE_USERNAME: admin_user
+      SPRING_DATASOURCE_PASSWORD: admin_pass
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+    depends_on:
+      - msadministrador-db
+    networks:
+      - ms-network
+
+volumes:
+  cliente-db-data:
+
+networks:
+  ms-network:
+    external: true
