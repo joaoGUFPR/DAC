@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  msconta-db:
+    image: postgres:15
+    container_name: msconta-db
+    environment:
+      POSTGRES_DB: conta_db
+      POSTGRES_USER: conta_user
+      POSTGRES_PASSWORD: conta_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - conta-db-data:/var/lib/postgresql/data
+    networks:
+      - ms-network
+
+  msconta:
+    build: .
+    container_name: msconta
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://msconta-db:5432/conta_db
+      SPRING_DATASOURCE_USERNAME: conta_user
+      SPRING_DATASOURCE_PASSWORD: conta_pass
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+    depends_on:
+      - msconta-db
+    networks:
+      - ms-network
+
+volumes:
+  conta-db-data:
+
+networks:
+  ms-network:
+    external: true
