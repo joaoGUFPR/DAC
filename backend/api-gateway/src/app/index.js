@@ -13,6 +13,7 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.SECRET;
 
+// Criação do logger
 const apiLogger = winston.createLogger({
     level: 'info',
     format: winston.format.combine(
@@ -39,6 +40,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Criação do limitador de taxa
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutos
     max: 100,
@@ -53,8 +55,6 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Declaração dos proxys para os MS
-const clienteServiceProxy = httpProxy('http://localhost:5000');
-
 function verifyJWT(req, res, next) {
     const token = req.headers['x-access-token'] || (req.headers.authorization && req.headers.authorization.split(' ')[1]);
     
@@ -76,6 +76,7 @@ function verifyJWT(req, res, next) {
     });
 }
 
+// Mapeamento de rotas para os MS
 const services = {
     auth:    { path: '/auth',     target: process.env.AUTH_MS_URL },
     cliente: { path: '/clientes', target: process.env.CLIENTE_MS_URL },
@@ -84,6 +85,7 @@ const services = {
     admin:   { path: '/admin',    target: process.env.ADMIN_MS_URL },
 };
 
+// Propagação do usuário logado
 const createServiceProxy = (target, serviceName) => httpProxy(target, {
     proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
         if (srcReq.userId) {
@@ -119,22 +121,9 @@ const createServiceProxy = (target, serviceName) => httpProxy(target, {
     }
 });
 
-// app.post('/login', (req, res, next) => {
-//     if (req.body.user === 'admin' && req.body.password === 'admin') {
-//         const id = 1;
-//         const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 300 })
-//     }
 
-//     res.status(500).json({ message: 'Login inválido!' });
-// })
-
-// app.post('/logout', function(req, res) {
-//     res.json({ auth: false, token: null }); 
-// })
-
-// app.get('/clientes', verifyJWT, (req, res, next) => {
-//     clienteServiceProxy(req, res, next);
-// })
+// Interceptação de tráfego e redirecionamento para o MS correto
+app.post('/login', createServiceProxy(services.auth.target, 'Auth'));
 
 app.post('/clientes/autocadastro', createServiceProxy(services.cliente.target, 'Cliente'));
 
@@ -150,11 +139,13 @@ app.use(services.conta.path, createServiceProxy(services.conta.target, 'Conta'))
 
 app.use(services.admin.path, createServiceProxy(services.admin.target, 'Admin'));
 
+// Log de status do gateway
 const server = app.listen(PORT, () => {
     apiLogger.info(`API Gateway rodando na porta ${PORT}`);
     apiLogger.info(`Microsserviços configurados: ${Object.keys(services).join(', ')}`);
 });
 
+// Log de status do servidor
 server.on('error', (err) => {
     apiLogger.error('Server Error: Failed to start', { error: err.message });
 });
